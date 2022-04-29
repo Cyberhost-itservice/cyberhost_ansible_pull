@@ -1,0 +1,19 @@
+#Install Ansible & Github on your Server | System 
+
+- apt update && upgrade -y
+- apt install ansible
+- apt install git
+
+# Github connect
+# create sshkey on your ansible-server 
+
+- ssh-keygen -t ed25519 -C "info@cyberhost-itservice.com"  #create the sshkey
+- eval "$(ssh-agent -s)" 
+- ssh-add ~/.ssh/id_ed25519
+- cat ~/.ssh/id_ed25519.pub
+- ssh -T git@github.com #this check your ssh connection
+
+# under github profil - settings -access - sshand gpg keys -> New SSH Key copie and paste the key from your server to here. 
+
+
+
