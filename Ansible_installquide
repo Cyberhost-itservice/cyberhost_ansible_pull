@@ -1,1 +1,6 @@
-
+#Install Ansible
+apt update && upgrade -y
+apt install ansible
+# Github connect
+# create sshkey on your ansible-server 
+ssh-keygen -t ed25519 -C "a.lewrick@cyberhost-itservice.com"
