@@ -1,3 +1,5 @@
 192.168.122.22
 192.168.122.251
-
+[vars]
+ansible_user=root
+ansible_password=adminal
