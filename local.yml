@@ -24,4 +24,4 @@
           state: latest
       
       - name: Run Docker with nextcloud
-        shell: "docker run -d -p 8080:80 nextcloud"
+        shell: "docker stop -d -p 8080:80 nextcloud"
