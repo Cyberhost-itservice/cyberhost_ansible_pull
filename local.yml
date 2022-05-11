@@ -1,0 +1,9 @@
+---
+  - hosts: localhost
+    connestion: local
+    become: true
+
+    tasks:
+    - name: Install htop
+      apt: 
+        name: htop
