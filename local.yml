@@ -1,9 +1,9 @@
 ---
-  - hosts: localhost
-    connestion: local
-    become: true
+   hosts: localhost
+   connestion: local
+   become: true
 
-    tasks:
-    - name: Install htop
+   tasks:
+   - name: Install htop
       apt: 
-        name: htop
+       name: htop
