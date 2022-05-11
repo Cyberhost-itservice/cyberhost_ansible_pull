@@ -11,7 +11,13 @@
         apt:
            name: nodejs
            state: latest
-      - name : Remove apache-Webserver
+      - name : SoftwarePackage 
         apt:
            name: apache2
-           state: absent
+              - xorriso
+              - squashfs-tools
+              - debootstrap
+              - mtools
+              - grub-pc-bin
+              - grub-efi-amd-bin
+           state: latest
