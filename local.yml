@@ -5,14 +5,4 @@
       - name: Install Software htop
         apt:
           name: htop
-          state: latest
-      - name: Install Software Git 
-        apt:
-          name: git
-          state: latest
-      - name: Update
-        apt:
-          name: update
-      - name: upgrade
-        apt:
-          name: upgrade
+          state: absent
