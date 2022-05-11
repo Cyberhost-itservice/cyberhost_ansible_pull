@@ -2,14 +2,7 @@
   - name:
     hosts: localhost
     tasks:
-      - name: Install Software git &
+      - name: Install Software htop
         apt:
-          name: git
+          name: htop
           state: latest
-
-    tasks:
-       - name: git clone
-         git:
-           name: clone
-           repo: git@github.com:Cyberhost-itservice/cyberhost_ansible_pull.git
-           dest: "/home/repo"
