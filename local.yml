@@ -20,7 +20,7 @@
       
       - name: Install docker
         apt:
-          name: docker-ce
+          name: docker.io
           state: latest
       
 #      - name: Run Docker with nextcloud
