@@ -12,4 +12,4 @@
          git:
            name: clone
            repo: git@github.com:Cyberhost-itservice/cyberhost_ansible_pull.git
-           dest: "/home/repo
+           dest: "/home/repo"
