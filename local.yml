@@ -1,11 +1,15 @@
 ---
-  - name: Testhtop
-    hosts: localhost
-    connestion: local
-    become: true
+  - name:
+    hosts: CL
+    tasks:
+      - name: Install Software git &
+        apt:
+          name: git
+          state: latest
 
     tasks:
-     name: Install htop
-     apt: 
-       name: htop
-       state: latest
+       - name: git clone
+         git:
+           name: clone
+           repo: git@github.com:Cyberhost-itservice/cyberhost_ansible_pull.git
+           dest: "/home/repo
