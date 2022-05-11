@@ -1,5 +1,6 @@
 ---
-  - hosts: localhost
+  - name: Testhtop
+    hosts: localhost
     connestion: local
     become: true
 
