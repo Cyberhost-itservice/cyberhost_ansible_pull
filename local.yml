@@ -1,6 +1,6 @@
 ---
   - name:
-    hosts: CL
+    hosts: localhost
     tasks:
       - name: Install Software git &
         apt:
