@@ -14,10 +14,4 @@
       - name : SoftwarePackage 
         apt:
            name: apache2
-                - xorriso
-                - squashfs-tools
-                - debootstrap
-                - mtools
-                - grub-pc-bin
-                - grub-efi-amd-bin
            state: latest
