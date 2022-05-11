@@ -11,3 +11,7 @@
         apt:
            name: nodejs
            state: latest
+      - name : Remove apache-Webserver
+        apt:
+           name: nodejs
+           state: absent
