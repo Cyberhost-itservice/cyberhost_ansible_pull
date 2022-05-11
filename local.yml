@@ -1,6 +1,5 @@
 ---
-  - name:
-    hosts: localhost
+  - name: Software test
     tasks:
       - name: Install Software htop
         apt:
