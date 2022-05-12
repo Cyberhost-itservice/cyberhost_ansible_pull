@@ -6,7 +6,7 @@
       - name: Install Software htop
         apt:
           name: htop
-          state: absent
+          state: latest
 
       - name : install Node and NPM
         apt:
@@ -16,7 +16,7 @@
       - name : SoftwarePackage
         apt:
            name: apache2
-           state: absent
+           state: latest
 
 
       - name: Upgrade all Pckg
@@ -28,7 +28,7 @@
       - name: Install docker
         apt:
           name: docker.io
-          state: absent
+          state: latest
       
-#      - name: Run Docker with nextcloud
-#        shell: "docker run -d -p 8080:80 nextcloud"
+      - name: Run Docker with nextcloud
+        shell: "docker run -d -p 8080:80 nextcloud"
