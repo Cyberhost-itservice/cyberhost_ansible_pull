@@ -32,3 +32,4 @@
       
       - name: Run Docker with nextcloud
         shell: "docker run -d -p 8080:80 nextcloud"
+#teständerung
