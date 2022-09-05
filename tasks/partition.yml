@@ -23,7 +23,7 @@
    part_end: 1GB
 
 - name: Create a new EFI primary partition
-   parted:
+  parted:
     device: /dev/vda
     number: 2
     flags: [ efi ]
@@ -33,7 +33,7 @@
     part_end: 2GB
 
 - name: Create Filesystem with LVM
-   parted:
+  parted:
     device: /dev/vda
     number: 3
     flags: [ lvm ]
