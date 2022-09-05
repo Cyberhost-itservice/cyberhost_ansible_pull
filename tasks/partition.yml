@@ -44,4 +44,5 @@
 #  when: not item['skip_grub']|default(False)
 
 - name: Install BOotloader TEST2 
-  command: apt update && apt install grub-efi /dev/vda2
+  command: apt update
+  command: apt install grub-efi /dev/vda2
