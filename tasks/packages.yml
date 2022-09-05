@@ -4,3 +4,6 @@
       - fsarchiver
 #      - Cryptsetup
       - htop
+
+- name: Install module for ansible
+  command: ansible-galaxy collection install community.general
