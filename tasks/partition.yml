@@ -24,3 +24,10 @@
 #    fs_type: ext4
     part_start: 2GB
 #    part_end: 15GB 
+
+- name: create container if it does not exist and add new key to it
+  luks_device:
+    device: "/dev/vda3"
+    state: "present"
+    keyfile: "/vault/keyfile"
+#    new_keyfile: "/vault/keyfile2"
