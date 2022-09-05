@@ -17,6 +17,7 @@
   parted:
     device: /dev/vda
     number: 1
+    flags: [ boot ]
     state: present
 #    flags: [ fat32 ]
 #    fs_type: ext2
@@ -26,6 +27,7 @@
   parted:
     device: /dev/vda
     number: 2
+    flags: [ efi ] 
     state: present
 #    fs_type: fat32
     part_start: 1GB
