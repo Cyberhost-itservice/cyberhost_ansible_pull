@@ -5,12 +5,12 @@
 #https://github.com/UKHomeOffice/ansible-role-grub-cmdline/blob/master/tasks/main.yaml
 #https://docs.ansible.com/ansible/latest/cli/ansible-pull.html
 
-- name: Remove all partitions from disk
-  parted:
-    device: /dev/vda1
+#- name: Remove all partitions from disk
+#  parted:
+#    device: /dev/vda1
 #    device: /dev/vda2
-    number: 1
-    state: absent
+#    number: 1
+#    state: absent
 #  loop: '{{ vda_info.partitions }}'
 
 - name: Create a new Boot primary partition
