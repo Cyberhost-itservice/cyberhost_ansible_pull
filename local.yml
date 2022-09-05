@@ -3,11 +3,11 @@
   connection: local
   become: true
 
-  pre_tasks:
-    - name: update repo
-      apt:
-       update_cache: yes
-      change_when: False
+#  pre_tasks:
+#    - name: update repo
+#      apt:
+#       update_cache: yes
+#      change_when: False
 
   tasks:
     - include: tasks/packages.yml
