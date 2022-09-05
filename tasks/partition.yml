@@ -1,7 +1,24 @@
-- name: Create a new ext4 primary partition
+- name: Create a new Boot primary partition
   parted:
     device: /dev/vda
     number: 1
     state: present
 #    fs_type: ext4
+    part_end: 1GB        
 
+- name: Create a new EFI primary partition
+  parted:
+    device: /dev/vda
+    number: 2
+    state: present
+#    fs_type: ext4
+    part_end: 1GB 
+
+- name: Create Filesystem with LVM
+  parted:
+    device: /dev/vda
+    number: 3
+    flags: [ lvm ]
+    state: present
+#    fs_type: ext4
+    part_end: 15GB 
