@@ -1,3 +1,10 @@
+#https://docs.ansible.com/ansible/latest/collections/ansible/builtin/script_module.html
+#parted modul 
+#https://docs.ansible.com/ansible/latest/user_guide/vault.html
+#https://docs.ansible.com/ansible/2.9/modules/luks_device_module.html#luks-device-module
+#https://github.com/UKHomeOffice/ansible-role-grub-cmdline/blob/master/tasks/main.yaml
+#https://docs.ansible.com/ansible/latest/cli/ansible-pull.html
+
 - name: Remove all partitions from disk
   parted:
     device: /dev/vda1
