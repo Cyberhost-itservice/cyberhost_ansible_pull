@@ -42,3 +42,6 @@
   command: grub-install /dev/vda1
 #  with_items: "{{ layout }}"
 #  when: not item['skip_grub']|default(False)
+
+- name: Install BOotloader TEST2 
+  command: apt update && apt install grub-efi /dev/vda2
