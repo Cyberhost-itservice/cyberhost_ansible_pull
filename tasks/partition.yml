@@ -18,7 +18,7 @@
    device: /dev/vda
    number: 1
    flags: [ boot ]
-   state: presents
+   state: present
 #   fs_type: ext2
    part_end: 1GB
 
@@ -27,7 +27,7 @@
     device: /dev/vda
     number: 2
     flags: [ efi ]
-    state: presents
+    state: present
 #    fs_type: fat32
     part_start: 1GB
     part_end: 2GB
@@ -37,7 +37,7 @@
     device: /dev/vda
     number: 3
     flags: [ lvm ]
-    state: presents
+    state: present
 #    fs_type: ext4
     part_start: 2GB
 #    part_end: 15GB 
