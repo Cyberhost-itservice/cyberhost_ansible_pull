@@ -34,4 +34,5 @@
 
 - name: Create LuksFormat
   shell: 
-     cryptsetup -q luksFormat /dev/vda3
+     cmd: cryptsetup -q luksFormat /dev/vda3
+     stderr_lines: 123asd
