@@ -25,9 +25,13 @@
     part_start: 2GB
 #    part_end: 15GB 
 
-- name: create container if it does not exist and add new key to it
-  luks_device:
-    device: "/dev/vda3"
-    state: "present"
-    keyfile: "/vault/key"
+#- name: create container if it does not exist and add new key to it
+#  luks_device:
+#    device: "/dev/vda3"
+#    state: "present"
+#    keyfile: "/vault/key"
 #    new_keyfile: "/vault/keyfile2"
+
+- name: Create LuksFormat
+  shell: 
+     cryptsetup -q luksFormat /dev/vda3
