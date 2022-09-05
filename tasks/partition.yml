@@ -1,9 +1,9 @@
-- name: Remove all partitions from disk
-  parted:
-    device: /dev/vda
-    number: '{{ item.num }}'
-    state: absent
-  loop: '{{ sdb_info.partitions }}'
+#- name: Remove all partitions from disk
+#  parted:
+#    device: /dev/vda
+#    number: '{{ item.num }}'
+#    state: absent
+#  loop: '{{ vda_info.partitions }}'
 
 - name: Create a new Boot primary partition
   parted:
@@ -19,7 +19,7 @@
     device: /dev/vda
     number: 2
     state: present
-    fs_type: fat32
+#    fs_type: fat32
     part_start: 1GB
     part_end: 2GB
 
