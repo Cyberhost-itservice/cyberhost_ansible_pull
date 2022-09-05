@@ -1,6 +1,6 @@
 - name: Install Packages
   apt:
     name: 
-#      - fsarchiver
-#      - Cryptsetup
+      - fsarchiver
+      - Cryptsetup
       - htop
