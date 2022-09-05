@@ -1,35 +1,10 @@
 ---
-  - name: Software test
-    hosts: localhost
-    tasks:
+- hosts: localhost
+  connection: local
+  become: true
 
-      - name: Install Software htop
-        apt:
-          name: htop
-          state: latest
-
-      - name : install Node and NPM
-        apt:
-           name: nodejs
-           state: absent
-
-      - name : SoftwarePackage
-        apt:
-           name: apache2
-           state: latest
-
-
-      - name: Upgrade all Pckg
-        apt:
-          name: "*"
-          state: latest
-          update_cache: yes
-      
-      - name: Install docker
-        apt:
-          name: docker.io
-          state: latest
-      
-      - name: Run Docker with nextcloud
-        shell: "docker run -d -p 8080:80 nextcloud"
-#teständerung
+  tasks:
+  - name: Install htop
+    apt:
+     name: htop
+     
