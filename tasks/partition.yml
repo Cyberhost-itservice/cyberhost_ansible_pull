@@ -3,7 +3,7 @@
     device: /dev/vda
     number: 1
     state: present
-    flags: [ FAT32 ]
+    flags: [ fat32 ]
 #    fs_type: ext2
     part_end: 1GB        
 
