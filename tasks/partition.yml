@@ -29,5 +29,5 @@
   luks_device:
     device: "/dev/vda3"
     state: "present"
-    keyfile: "/vault/keyfile"
+    keyfile: "/vault/key"
 #    new_keyfile: "/vault/keyfile2"
