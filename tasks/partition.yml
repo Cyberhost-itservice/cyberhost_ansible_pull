@@ -1,8 +1,8 @@
 - name: Remove all partitions from disk
   parted:
     device: /dev/vda1
-    device: /dev/vda2
-#    number: '{{ item.num }}'
+#    device: /dev/vda2
+    number: 1,2,3
     state: absent
 #  loop: '{{ vda_info.partitions }}'
 
