@@ -1,0 +1,147 @@
+---
+# The reason to use tmpfs here is that dpkg is awful slow, especially when installing to
+# slower devices (think thumb drive). It can be configured by the user, however.
+
+- block:
+  - name: create another tmpdir
+    command: mktemp -d
+    register: _mktemp
+
+  - name: set target (tmpfs)
+    set_fact:
+      _bootstrap_target: "{{ _mktemp.stdout }}"
+      _mktemp: None
+
+  - name: mount tmpfs
+    command: "mount -t tmpfs -o size=2G none {{ _bootstrap_target }} warn=no"
+
+  when: use_tmpfs
+
+- name: set target
+  set_fact:
+    _bootstrap_target: "{{ _tgt_root }}"
+  when: not use_tmpfs
+
+- block:
+  - name: run bootstrap
+    command: >
+      eatmydata debootstrap {% if dbstrp_variant is defined %}--variant={{ dbstrp_variant }}{% endif %}
+      {{ release }} {{ _bootstrap_target }} {{ use_mirror|default(mirrors[release]) }}
+  - name: bind mount pseudo filesystems
+    shell: "mkdir {{ _bootstrap_target }}/{{ item }}; mount --bind /{{ item }} {{ _bootstrap_target }}/{{ item }} warn=no"
+    register: _pseudomount
+    with_items: "{{ pseudo_fs }}"
+
+  - name: Link mtab
+    file:
+      src: "/proc/mounts"
+      dest: "{{ _bootstrap_target }}/etc/mtab"
+      state: link
+
+  - name: build list of packages to install
+    set_fact:
+      _install: "{{ install_packages + required_packages['all'] + required_packages[release] }}"
+
+  - name: replace the package "grub-pc" to "grub-efi" in case of EFI
+    when: use_efi and _stat_efi.stat.exists
+    set_fact:
+      _install: "{{ _install|map('regex_replace', 'grub-pc', 'grub-efi') | list }}"
+
+  - debug:
+      msg: "Going to install: {{ _install|join(', ') }}"
+      verbosity: 2
+
+  rescue:
+  - name: cleanup
+    include_tasks: cleanup.yml
+
+  - name: wipe
+    include_tasks: wipe.yml
+
+- block:
+  # add more sources for apt
+  - name: update sources.list
+    template:
+      src: "sources_ubuntu.list"
+      dest: "{{ _bootstrap_target }}/etc/apt/sources.list"
+      mode: "0644"
+      owner: root
+      group: root
+    when: release in ["xenial", "artful", "bionic"]
+
+  - name: update sources.list
+    template:
+      src: "sources_debian.list"
+      dest: "{{ _bootstrap_target }}/etc/apt/sources.list"
+      mode: "0644"
+      owner: root
+      group: root
+    when: release in ["stretch", "buster", "sid"]
+
+  - name: update sources
+    command: "chroot {{ _bootstrap_target }} apt-get update"
+
+  # cut down on fsync
+  - name: install eatmydata
+    command: "chroot {{ _bootstrap_target }} apt-get -y install eatmydata"
+
+  - name: allow ppa use
+    command: "chroot {{ _bootstrap_target }} eatmydata apt-get -y install software-properties-common"
+    when: >-
+      install_ppa|default([])|length > 0 or
+      (
+        ansible_distribution == "Ubuntu"
+        and ansible_distribution_release in ["bionic", "disco"]
+        and zfs_pool is defined
+      and dbstrp_zfs_backport|default(False))
+  - name: install ZFS ppa for 0.8
+    command: >-
+      chroot {{ _bootstrap_target }} eatmydata
+      add-apt-repository -yu ppa:jonathonf/zfs
+    when: >-
+      ansible_distribution == "Ubuntu"
+      and ansible_distribution_release in ["bionic", "disco"]
+      and zfs_pool is defined
+      and dbstrp_zfs_backport|default(False)
+  # pool can't be imported when the hostid changes
+  - name: copy hostid to chroot
+    command: >-
+      cp /etc/hostid {{ _bootstrap_target }}/etc/
+    when: zfs_pool is defined
+
+  # A bit ineffective, since we'll be upgrading the cache every time.
+  - name: enable ppa
+    shell: "chroot  {{ _bootstrap_target }} eatmydata add-apt-repository -yu {{ item }}"
+    with_items: "{{ install_ppa|default([]) }}"
+    when: install_ppa is defined and install_ppa|length > 0
+
+  - name: install packages
+    command: "chroot {{ _bootstrap_target }} eatmydata apt-get -y install {{ _install|join(' ') }}"
+
+  - name: clean up packages
+    command: "chroot {{ _bootstrap_target }} eatmydata apt-get clean"
+
+  environment: "{{ _apt_env }}"
+
+- block:
+  - name: umount pseudo filesystems
+    command: umount {{ _bootstrap_target }}/{{ item }}
+    with_items: "{{ pseudo_fs|reverse|list }}"
+
+  - name: copy data from temp
+    shell: cp -a {{ _bootstrap_target }}/* {{ _tgt_root }}/
+
+  - name: bind mount pseudo filesystems
+    shell: mkdir {{ _tgt_root }}/{{ item }}; mount --bind /{{ item }} {{ _tgt_root }}/{{ item }}
+    register: _pseudomount
+    with_items: "{{ pseudo_fs }}"
+
+  - name: umount tmpfs
+    command: "umount {{ _bootstrap_target }}"
+
+  - name: remove tmpfs
+    file:
+      state: absent
+      dest: "{{ _bootstrap_target }}"
+
+  when: use_tmpfs
