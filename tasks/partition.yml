@@ -13,7 +13,7 @@
     state: present
 #    fs_type: ext4
 #    part_start: 1,1GB
-    part_end: 1,9GB
+    part_end: 2GB
 
 - name: Create Filesystem with LVM
   parted:
