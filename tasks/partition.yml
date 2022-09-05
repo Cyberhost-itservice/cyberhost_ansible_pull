@@ -3,7 +3,7 @@
     device: /dev/vda
     number: 1
     state: present
-#    fs_type: ext4
+    fs_type: ext2
     part_end: 1GB        
 
 - name: Create a new EFI primary partition
@@ -11,7 +11,7 @@
     device: /dev/vda
     number: 2
     state: present
-#    fs_type: ext4
+    fs_type: fat32
     part_start: 1GB
     part_end: 2GB
 
