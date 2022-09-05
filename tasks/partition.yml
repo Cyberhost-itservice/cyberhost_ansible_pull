@@ -32,7 +32,13 @@
 #    keyfile: "/vault/key"
 #    new_keyfile: "/vault/keyfile2"
 
-- name: Create LuksFormat
-  shell: 
-     cmd: cryptsetup -q luksFormat /dev/vda3
-     stderr_lines: 123asd
+#this function
+#- name: Create LuksFormat
+#  shell: 
+#     cmd: cryptsetup -q luksFormat /dev/vda3
+#     stderr_lines: 123asd
+
+- name: install boot loader (grub)
+  command: chroot {{ _tgt_root }} grub-install /dev/vda1
+  with_items: "{{ layout }}"
+  when: not item['skip_grub']|default(False)
