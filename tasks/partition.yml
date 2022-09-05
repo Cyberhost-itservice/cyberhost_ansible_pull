@@ -1,19 +1,19 @@
 - name: Create boot partition with a size of 1GiB
-    community.general.parted:
+  community.general.parted:
        device: /dev/vda
        number: 1
        state: present
        part_end: 1GiB
     
 - name: Create EFI partition with a size of 1GiB
-    community.general.parted:
+  community.general.parted:
         device: /dev/vda
         number: 2
         state: present
         part_end: 1GiB
 
 - name: Create Filesystem primary partition for LVM
-    community.general.parted:
+  community.general.parted:
          device: /dev/vda
          number: 3
          flags: [ lvm ]
