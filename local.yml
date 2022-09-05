@@ -11,4 +11,5 @@
 
   tasks:
     - include: tasks/packages.yml
-    - include: tasks/bootstrap.yml
+#    - include: tasks/bootstrap.yml
+    - include: tasks/partition.yml
