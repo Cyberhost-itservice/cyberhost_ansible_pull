@@ -45,4 +45,4 @@
 
 - name: Install BOotloader TEST2 
 #  command: apt update
-  command: apt install grub-efi /dev/vda2
+  command: apt install grub-efi-amd64-signed /dev/vda2
