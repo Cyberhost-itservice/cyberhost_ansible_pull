@@ -12,7 +12,8 @@
     number: 2
     state: present
 #    fs_type: ext4
-    part_end: 512kib
+    part_start: 1100kib
+    part_end: 1812kib
 
 - name: Create Filesystem with LVM
   parted:
@@ -21,4 +22,5 @@
     flags: [ lvm ]
     state: present
 #    fs_type: ext4
+    part_start: 2GB
     part_end: 15GB 
