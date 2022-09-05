@@ -19,7 +19,7 @@
    number: 1
    flags: [ boot ]
    state: presents
-   fs_type: ext2
+#   fs_type: ext2
    part_end: 1GB
 
 - name: Create a new EFI primary partition
@@ -28,7 +28,7 @@
     number: 2
     flags: [ efi ]
     state: presents
-    fs_type: fat32
+#    fs_type: fat32
     part_start: 1GB
     part_end: 2GB
 
@@ -38,7 +38,7 @@
     number: 3
     flags: [ lvm ]
     state: presents
-    fs_type: ext4
+#    fs_type: ext4
     part_start: 2GB
 #    part_end: 15GB 
 
