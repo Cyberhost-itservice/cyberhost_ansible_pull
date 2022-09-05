@@ -22,5 +22,5 @@
     flags: [ lvm ]
     state: present
 #    fs_type: ext4
-    part_start: 3GB
+    part_start: 2GB
     part_end: 15GB 
