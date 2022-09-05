@@ -39,6 +39,6 @@
 #     stderr_lines: 123asd
 
 - name: install boot loader (grub)
-  command: chroot {{ _tgt_root }} grub-install /dev/vda1
-  with_items: "{{ layout }}"
-  when: not item['skip_grub']|default(False)
+  command: grub-install /dev/vda1
+#  with_items: "{{ layout }}"
+#  when: not item['skip_grub']|default(False)
