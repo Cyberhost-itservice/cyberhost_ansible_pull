@@ -2,7 +2,7 @@
   parted:
     device: /dev/vda1
 #    device: /dev/vda2
-    number: 1,2,3
+    number: 1
     state: absent
 #  loop: '{{ vda_info.partitions }}'
 
