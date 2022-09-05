@@ -1,9 +1,16 @@
+- name: Remove all partitions from disk
+  community.general.parted:
+    device: /dev/vda
+    number: '{{ item.num }}'
+    state: absent
+  loop: '{{ sdb_info.partitions }}'
+
 - name: Create a new Boot primary partition
   parted:
     device: /dev/vda
     number: 1
     state: present
-    flags: [ fat32 ]
+#    flags: [ fat32 ]
 #    fs_type: ext2
     part_end: 1GB        
 
