@@ -1,3 +1,4 @@
+---
   - name: Create boot partition with a size of 1GiB
     community.general.parted:
        device: /dev/vda
