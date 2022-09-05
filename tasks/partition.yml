@@ -12,7 +12,7 @@
     number: 2
     state: present
 #    fs_type: ext4
-    part_end: 512MiB
+    part_end: 512kib
 
 - name: Create Filesystem with LVM
   parted:
