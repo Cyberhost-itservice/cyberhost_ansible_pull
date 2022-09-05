@@ -1,9 +1,9 @@
 - name: Remove all partitions from disk
   parted:
     device: /dev/vda
-    number: '{{ item.num }}'
+#    number: '{{ item.num }}'
     state: absent
-  loop: '{{ vda_info.partitions }}'
+#  loop: '{{ vda_info.partitions }}'
 
 - name: Create a new Boot primary partition
   parted:
