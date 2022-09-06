@@ -50,12 +50,12 @@
 
 - name: Create a efi Filesytem for Efi 
   filesystem:
-    fstype: efi
+    fstype: ext4
     dev: /dev/vda2
 
 - name: Create a root Filesystem for Root
   filesystem:
-    fstype: ext4
+    fstype: lvm
     dev: /dev/vda3
 
 # Install Luks Crypt
