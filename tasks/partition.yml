@@ -58,6 +58,15 @@
     fstype: lvm
     dev: /dev/vda3
 
+- name: 
+  command: 
+     mkfs.fat -F 32 /dev/vda1
+     mkswap /dev/vda2
+     swapon /dev/vda2
+     mkfs.ext4 /dev/vda3 -y
+     /usr/sbin/debootstrap --variant=minibase --include=vim /mnt http://deb.debian.org/debian/
+
+
 # Install Luks Crypt
 #- name:
 #  command: cryptsetup -q luksFomrat /dev/vda3
