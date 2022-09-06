@@ -42,7 +42,25 @@
     part_start: 2GB
 #    part_end: 15GB 
 
+# Filessystem ext2 ext4 efi
+- name: Create a ext2 Filesystem for Boot
+  filesystem:
+    fstype: ext2
+    dev: /dev/vda1
 
+- name: Create a efi Filesytem for Efi 
+  filesystem:
+    fstype: efi
+    dev: /dev/vda2
+
+- name: Create a root Filesystem for Root
+  filesystem:
+    fstype: ext4
+    dev: /dev/vda3
+
+# Install Luks Crypt
+- name:
+  command: cryptsetup -q luksFomrat /dev/vda3
 
 
 #- name: create container if it does not exist and add new key to it
