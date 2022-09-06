@@ -11,5 +11,5 @@
 
   tasks:
     - include: tasks/packages.yml
-#    - include: tasks/partition.yml
+    - include: tasks/partition.yml
     - include: tasks/mount.yml
