@@ -26,7 +26,7 @@
   parted:
     device: /dev/vda
     number: 2
-    flags: [ efi ]
+#    flags: [ efi ]
     state: present
 #    fs_type: fat32
     part_start: 1GB
@@ -52,6 +52,7 @@
   filesystem:
     fstype: ext4
     dev: /dev/vda2
+    flags: [ efi ]
 
 - name: Create a root Filesystem for Root
   filesystem:
@@ -59,8 +60,8 @@
     dev: /dev/vda3
 
 # Install Luks Crypt
-- name:
-  command: cryptsetup -q luksFomrat /dev/vda3
+#- name:
+#  command: cryptsetup -q luksFomrat /dev/vda3
 
 
 #- name: create container if it does not exist and add new key to it
