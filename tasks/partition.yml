@@ -52,7 +52,6 @@
   filesystem:
     fstype: ext4
     dev: /dev/vda2
-    flags: [ efi ]
 
 - name: Create a root Filesystem for Root
   filesystem:
