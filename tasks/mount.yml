@@ -7,8 +7,8 @@
 #    BOOT_PARTITION=/dev/vda2$PARTITION_PREFIX"2"
 #    LUKS_PARTITION=/dev/vda3$PARTITION_PREFIX"3"
 
-
-mount -t proc proc "$ROOT_MOUNT"/proc
-    mount -o bind /sys "$ROOT_MOUNT"/sys
-    mount -o bind /dev "$ROOT_MOUNT"/dev
-    mount -o bind /dev/pts "$ROOT_MOUNT"/dev/pts
+- name:
+  command: mount -t proc proc "$ROOT_MOUNT"/proc
+           mount -o bind /sys "$ROOT_MOUNT"/sys
+           mount -o bind /dev "$ROOT_MOUNT"/dev
+           mount -o bind /dev/pts "$ROOT_MOUNT"/dev/pts
