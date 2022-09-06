@@ -3,7 +3,18 @@
     name: 
       - fsarchiver
 #      - Cryptsetup
-      - htop
+      - xorriso
+      - squashfs-tools
+      - debootstrap
+      - mtools
+      - grub-pc-bin
+      - grub-efi-amd64-bin
+- name: 
+  command: debootstrap --variant=minbase --arch=amd64 focal "${CHROOT}" http://"${LOCAL_CACHE:+${LOCAL_CACHE}/}"de.archive.ubuntu.com/ubuntu
+
+
+
+
 
 - name: Install module for ansible
   command: ansible-galaxy collection install community.general
