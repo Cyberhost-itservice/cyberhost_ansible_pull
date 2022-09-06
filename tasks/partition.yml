@@ -26,7 +26,7 @@
   parted:
     device: /dev/vda
     number: 2
-#    flags: [ efi ]
+    flags: [ efi ]
     state: present
 #    fs_type: fat32
     part_start: 1GB
