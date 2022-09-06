@@ -1,0 +1,8 @@
+- name:
+  command: sgdisk -n 1:2048:+200M -t 1:EF00 -c 1:"efi" /dev/vda1
+           sgdisk -n 2:+0M:+2G -t 2:8300 -c 2:"boot" /dev/vda2
+           sgdisk -n 3:+0M -t 3:8300 -c 3:"root" /dev/vda3
+# Set some shortcuts to the appropriate partitions
+    EFI_PARTITION=/dev/vda1$PARTITION_PREFIX"1"
+    BOOT_PARTITION=/dev/vda2$PARTITION_PREFIX"2"
+    LUKS_PARTITION=/dev/vda3$PARTITION_PREFIX"3"
