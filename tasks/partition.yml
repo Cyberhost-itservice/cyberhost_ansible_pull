@@ -63,6 +63,6 @@
 #  with_items: "{{ layout }}"
 #  when: not item['skip_grub']|default(False)
 
-- name: Install BOotloader TEST2 
-  command: apt install grub-efi-amd64-signed /dev/vda
+#- name: Install BOotloader TEST2 
+#  command: apt install grub-efi-amd64-signed /dev/vda
 #  command: apt update
