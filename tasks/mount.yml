@@ -7,8 +7,8 @@
      mkdir /mnt/sys
      mkdir /mnt/dev
      mkdir /mnt/dev/pts
-     mkdir /mnt/boot/efi
      mkdir /mnt/boot
+     mkdir /mnt/boot/efi
 
 # mount the system 
 - name: mount the files in mnt...
