@@ -1,6 +1,6 @@
 # cyberhost_ansible_pull
 # Learning Ansible Automation  
-# Here we create a install playbook for Ubuntu 
+# Here we create a playbook for install a Ubuntu  
  This is my awesome ansible repo 
  
 #update this file
